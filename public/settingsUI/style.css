@@ -159,7 +159,7 @@ body{
     width: 11rem;
     height: 3.2rem;
 
-    font-size: 14px;
+    font-size: 1.2rem;
     font-family: sans-serif;
     cursor: pointer;
     border-radius: 5px;
@@ -218,18 +218,6 @@ body{
     font-size: 1.4rem;
     color: white;
     margin: 20px 0px;
-}
-
-.password-container .change-password-button{
-    height: 4.2rem;
-
-    font-size: 14px;
-    font-family: sans-serif;
-    cursor: pointer;
-    border-radius: 5px;
-    border: 1px;
-
-    transition: background-color 0.1s ease-in-out;
 }
 
 

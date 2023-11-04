@@ -2,6 +2,9 @@ const UI = {
     USERNAME_INPUT_FIELD: document.querySelector(".username-input-field") as HTMLInputElement,
     SAVE_USERNAME_BTN: document.querySelector(".save-email-button") as HTMLButtonElement,
 
+    CHANGE_EMAIL_BTN: document.querySelector(".change-email-button") as HTMLButtonElement,
+    CHANGE_PASSWORD_BTN: document.querySelector(".change-password-button") as HTMLButtonElement,
+
     USERNAME_CHANGE_MSG: document.querySelector(".username-change-msg") as HTMLSpanElement
 }
 
@@ -46,6 +49,15 @@ UI.SAVE_USERNAME_BTN.addEventListener("click", async () => {
     }, 3 * 1000)
 
 
+})
+
+
+UI.CHANGE_EMAIL_BTN.addEventListener("click", () => {
+    CHANGE_EMAIL_POPUP_UI.MAIN_CONTAINER.classList.remove("hide")
+})
+
+UI.CHANGE_PASSWORD_BTN.addEventListener("click", () => {
+    CHANGE_PASSWORD_POPUP_UI.MAIN_CONTAINER.classList.remove("hide")
 })
 
 
