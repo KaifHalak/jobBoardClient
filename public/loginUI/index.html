@@ -17,17 +17,21 @@
             </div>
 
             <label for="login-email-input-field"> Email <br>
-                <input type="email" id="login-email-input-field" class="input-field-design"> 
+                <input type="email" id="login-email-input-field" class="input-field-design"> <br>
+                <span class="hide email-error-msg error-msg-design">Incorrect format.</span>
             </label>
 
-            <label for="password-email-input-field"> Password <br>
-                <input type="password" id="password-email-input-field"  class="input-field-design"> 
+            <label for="password-input-field"> Password <br>
+                <input type="password" id="password-input-field"  class="input-field-design"> <br>
+                <span class="hide password-error-msg error-msg-design">Password must be atleast 6 characters long.</span> 
             </label>
 
+            <span class="hide server-error-msg error-msg-design">Server error. Please try again later.</span> 
+            <span class="hide custom-server-error-msg error-msg-design"></span>
             <button class="login-btn">Login</button>
 
             <div class="create-account-container">
-                <span>Not registered ? <a href="/user/signin" target="_self">Create Account</a> </span>
+                <span>Not registered ? <a href="/user/signup" target="_self">Create Account</a> </span>
             </div>
 
         </div>

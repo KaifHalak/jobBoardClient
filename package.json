@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "distFolder": "ts-node ./extras/distFolder.ts",
-    "build": "npm run distFolder && tsc"
+    "build": "npm run distFolder && tsc",
+    "watch": "tsc -w"
   },
   "keywords": [],
   "author": "",

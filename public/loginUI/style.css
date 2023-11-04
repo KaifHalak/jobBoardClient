@@ -93,3 +93,15 @@ body, html{
     font-size: inherit;
     color: #0070ff99;;
 }
+
+
+/* Others */
+
+.hide{
+    display: none;
+}
+
+.error-msg-design{
+    color: red;
+    font-size: 1rem;
+}
