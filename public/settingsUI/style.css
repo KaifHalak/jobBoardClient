@@ -154,6 +154,26 @@ body{
     font-family: sans-serif;
 }
 
+
+.button-design{
+    width: 11rem;
+    height: 3.2rem;
+
+    font-size: 14px;
+    font-family: sans-serif;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px;
+
+    transition: background-color 0.1s ease-in-out;
+}
+
+.button-design:hover{
+    color: white;
+    background-color: #0070ff99;
+}
+
+
 /* Email */
 
 .email-container{
@@ -177,22 +197,9 @@ body{
     color: grey;
 }
 
-.email-container .change-email-button{
-    width: 11rem;
-    height: 3.2rem;
-
-    font-size: 14px;
-    font-family: sans-serif;
-    cursor: pointer;
-    border-radius: 5px;
-    border: 1px;
-
-    transition: background-color 0.1s ease-in-out;
-}
-
-.email-container .change-email-button:hover{
-    color: white;
-    background-color: #0070ff99;
+.email-container .save-email-button{
+    width: 9rem;
+    margin: 0px 10px;
 }
 
 /* Password */
@@ -214,7 +221,6 @@ body{
 }
 
 .password-container .change-password-button{
-    width: 11rem;
     height: 4.2rem;
 
     font-size: 14px;
@@ -226,10 +232,9 @@ body{
     transition: background-color 0.1s ease-in-out;
 }
 
-.password-container .change-password-button:hover{
-    color: white;
-    background-color: #0070ff99;
-}
 
+.hide{
+    display: none;
+}
 
 
