@@ -5,7 +5,17 @@ const UI = {
     CHANGE_EMAIL_BTN: document.querySelector(".change-email-button") as HTMLButtonElement,
     CHANGE_PASSWORD_BTN: document.querySelector(".change-password-button") as HTMLButtonElement,
 
-    USERNAME_CHANGE_MSG: document.querySelector(".username-change-msg") as HTMLSpanElement
+    USERNAME_CHANGE_MSG: document.querySelector(".username-change-msg") as HTMLSpanElement,
+
+    EMAIL_VALUE: document.querySelector(".email-container .value") as HTMLSpanElement,
+    CHANGE_EMAIL_STATUS_MSG: document.querySelector(".email-status-msg") as HTMLSpanElement,
+    CHANGE_PASSWORD_STATUS_MSG: document.querySelector(".password-status-msg") as HTMLSpanElement,
+
+    //CHANGE_EMAIL_POPUP_UI
+    MAIN_EMAIL_POPUP_CONTAINER: document.querySelector(".main-email-popup-container") as HTMLDivElement,
+
+    //CHANGE_PASSWORD_POPUP_UI
+    MAIN_PASSWORD_POPUP_CONTAINER: document.querySelector(".main-password-popup-container") as HTMLDivElement
 }
 
 let currentUsername = UI.USERNAME_INPUT_FIELD.value
@@ -53,11 +63,11 @@ UI.SAVE_USERNAME_BTN.addEventListener("click", async () => {
 
 
 UI.CHANGE_EMAIL_BTN.addEventListener("click", () => {
-    CHANGE_EMAIL_POPUP_UI.MAIN_CONTAINER.classList.remove("hide")
+    UI.MAIN_EMAIL_POPUP_CONTAINER.classList.remove("hide")
 })
 
 UI.CHANGE_PASSWORD_BTN.addEventListener("click", () => {
-    CHANGE_PASSWORD_POPUP_UI.MAIN_CONTAINER.classList.remove("hide")
+    UI.MAIN_PASSWORD_POPUP_CONTAINER.classList.remove("hide")
 })
 
 

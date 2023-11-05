@@ -202,6 +202,7 @@ body{
     margin: 0px 10px;
 }
 
+
 /* Password */
 
 .password-container{
@@ -220,6 +221,11 @@ body{
     margin: 20px 0px;
 }
 
+
+.status-msg-design{
+    color: green;
+    font-size: 1.2rem;
+}
 
 .hide{
     display: none;
