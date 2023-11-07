@@ -1,0 +1,172 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+body, html{
+    background-color: #1F1F1F;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+body{
+    padding: 10rem 15rem;
+}
+
+.page-heading{
+    color: white;
+    font-size: 5rem;
+    margin-bottom: 10px;
+}
+
+.main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+
+    width: 100%;
+    background-color: rgb(43,43,43);
+    padding: 30px;
+    font-family: sans-serif;
+    margin-top: 40px;
+}
+
+
+.option-design{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin: 28px 0px;
+}
+
+.option-heading{
+    font-size: 1.6rem;
+    width: 27rem;
+    text-wrap: balance;
+
+}
+
+
+/* Input field */
+
+.input-field-design{
+    /* width: 27rem; */
+    height: 4.5rem;
+    font-size: 1.5rem;
+    margin:10px;
+    padding: 5px;
+    flex-grow: 1;
+
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+}
+
+.input-field-design:focus{
+    outline: none;
+    border-bottom: #0070ff99 1px solid;
+}
+
+
+/* Text area */
+
+.text-area-design{
+    font-size: 1.5rem;
+    flex-grow: 1;
+    padding: 5px;
+    margin: 10px;
+    max-height: 300px;
+    font-family: sans-serif;
+    background-color: transparent;
+    color: white;
+}
+
+
+
+/* Drop down */
+
+.drop-down-design{
+    /* width: 27rem; */
+    height: 4.5rem;
+    font-size: 1.5rem;
+    margin:10px;
+    padding: 5px;
+    flex-grow: 1;
+
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+    cursor: pointer;
+}
+
+.drop-down-design:focus{
+    outline: none;
+    border-bottom: #0070ff99 1px solid;
+}
+
+.drop-down-option-design{
+    color: black;
+    font-size: 1.3rem;
+}
+
+
+
+
+.contact-info-container{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    flex-grow: 1;
+}
+
+
+
+.create-job-post-btn{
+    width: 9rem;
+    height: 4rem;
+    font-size: 1rem;
+    margin: 10px 3px;
+    cursor: pointer;
+    border: 1px solid black;
+    transition: background-color 0.1s ease-in-out;
+    border-radius: 5px;
+}
+
+.create-job-post-btn:hover{
+    color: white;
+    background-color: #0070ff99;
+}
+
+
+
+label{
+    font-size: 1.5rem;
+    margin: 10px 10px;
+    flex-grow: 1;
+    display: flex;
+}
+
+
+/* Error message */
+
+.error-msg-design{
+    color: red;
+    margin: 5px 10px;
+    font-size: 1rem;
+}
+
+.hide{
+    display: none;
+}
+
