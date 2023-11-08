@@ -81,10 +81,11 @@ jobPostBtn.addEventListener("click", () => {
     CheckForAllValues()
 })
 
-function CheckForAllValues(){
+async function CheckForAllValues(){
     // Values
     let overallErrorMsg = JOB_POST_ERROR_MSG.OVERALL_ERROR_MSG
     overallErrorMsg.classList.add("hide")
+    overallErrorMsg.style.color = "red"
 
     // Just check if not empty
     let country = UI.COUNTRY_DROPDOWN.value
@@ -145,25 +146,56 @@ function CheckForAllValues(){
     // Optional
     let website = UI.WEBSITE_INPUT_FIELD.value
 
-    // console.log({
-    //     country,
-    //     city,
-    //     employmentType,
-    //     jobTitle,
-    //     companyName,
-    //     aboutCompany,
-    //     jobDesc,
-    //     jobReq,
-    //     experienceNeeded,
-    //     minMonthlyCompen,
-    //     maxMonthlyCompen,
-    //     phoneNum,
-    //     email,
-    //     linkedin,
-    //     website,
-    //     applicationDeadline
-    // })
+    let payload = {
+        country,
+        city,
+        employmentType,
+        jobTitle,
+        companyName,
+        aboutCompany,
+        jobDesc,
+        jobReq,
+        experienceNeeded,
+        minMonthlyCompen,
+        maxMonthlyCompen,
+        phoneNum,
+        email,
+        linkedin,
+        website,
+        applicationDeadline
+    }
+
+
+    let results = await SendReqToServer(payload)
+
+    
+
+    if (!results){
+        // server offline
+        overallErrorMsg.innerText = "Server error. Please try again later"
+    }
+
+
+    if (results?.error){
+        // server error
+        overallErrorMsg.innerText = results?.error
+    }
+
+    if (results?.status){
+        // success
+        overallErrorMsg.style.color = "green"
+        overallErrorMsg.innerText = "Success"
+    }
+
+    overallErrorMsg.classList.remove("hide")
+
+    setTimeout(() => {
+        overallErrorMsg.classList.add("hide")
+    },5 * 1000)
+
 }
+
+
 
 
 
@@ -176,6 +208,27 @@ function ValidatePhoneNum(num: string){
 function ValidateEmail(email: string){
     const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return pattern.test(email);
+}
+
+
+async function SendReqToServer(payload: any){
+    let url = "/jobs/post"
+    let options = {
+        method: "POST",
+        headers: {'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    }
+
+    return fetch(url, options)
+    .then(async (res) => {
+
+        let payload = await res.json() as {status?: string, error?: string, url?: string}
+        return payload
+    })
+    
+    .catch((error) => {
+        return null
+    })
 }
 
 
