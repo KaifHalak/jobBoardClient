@@ -1,4 +1,5 @@
 node_modules
 notes.txt
 todo.txt
-public/**/*js
+public/**/*.js
+!public/**/*.ejs

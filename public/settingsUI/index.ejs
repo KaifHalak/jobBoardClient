@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/settingsUI/style.css">
+</head>
+<body>
+    
+    <div class="sidebar-container">
+
+        <div class="my-account-container option-design">
+            <span>My account</span>
+        </div>
+
+        
+        <div class="settings-container option-design">
+            <span>Settings</span>
+        </div>
+
+    </div>
+
+    <div class="main-settings-container">
+
+        <div class="my-account-container section-design">
+
+            <div class="header">
+                <span>My account</span>
+            </div>
+
+            <div class="profile-container">
+
+                <div class="profile-pic-container">
+                    <!-- <img src="" alt=""> -->
+                </div>
+
+                <div class="username-container">
+
+                    <label for="username" class="username-input-field-label"> Username <br>
+                        <input type="text" id="username" class="username-input-field" value="<%= username %>">
+                        <button class="save-email-button button-design" disabled="true">Save</button> <br>
+                        <span class="username-change-msg hide">Successfull</span>
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div class="account-settings-container">
+
+                <div class="email-container">
+ 
+                    <div>
+                        <span class="title">Email</span> <br><br>
+                        <span class="value"><%= email%></span> <br>
+                        <span class="status-msg-design email-status-msg hide">Email successfully changed</span>
+                    </div>
+
+                    <button class="change-email-button button-design">Change email</button>
+                </div>
+
+                <div class="password-container">
+
+                    <div>
+                        <span class="title">Password</span> <br>
+                        <span class="status-msg-design password-status-msg hide">Password successfully changed</span>
+                    </div>
+
+                    <button class="change-password-button button-design">Change password</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <%-include ('./changeEmailPopup/index.ejs')%>
+        <%-include ('./changePasswordPopup/index.ejs')%>
+
+    </div>
+
+</body>
+<script src="/settingsUI/script.js" type="module"></script>
+</html>

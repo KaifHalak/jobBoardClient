@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/mainUI/style.css">
+</head>
+<body>
+    
+    <div class="left-side-container">
+        
+        <a href="/jobs/create" class="settings link-design">Post a job</a>
+
+        <a href="/jobs/saved" class="settings link-design">Saved jobs</a>
+        
+        <a href="/settings" class="settings link-design">Settings</a>
+
+    </div>
+
+    <div class="right-side-container">
+
+        <div class="search-container">
+        
+            <div class="search-bar">
+    
+                <!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
+            <svg class="search-bar-icon" width="256px" height="256px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    
+                <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.048"/>
+                
+                <g id="SVGRepo_iconCarrier"> <path d="M14.9536 14.9458L21 21M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> </g>
+                
+            </svg>
+    
+                <input type="text" placeholder="Job title" class="job-search-input-field">
+    
+            </div>
+    
+            <div class="filters-container">
+    
+                <!-- Populate options serverside (ejs) -->
+    
+                <!-- <div class="role filter-design">
+        
+                    <label for="role-dropdown"> Role <br>
+                        <select id="role-dropdown">
+                            <option value="">Select</option>
+                        </select>
+                    </label>
+    
+                </div> -->
+    
+                <div class="country filter-design">
+                      
+                    <label for="country-dropdown">Country <br>
+                        <select id="country-dropdown">
+                            <option value="">Select</option>
+                            <% Object.keys(countries).sort().forEach(country => { %>
+                                <% let attr = (country == filters?.country) ? 'selected' : '' %>
+                                <option <%= attr %> value="<%= country %>" class="drop-down-option-design" cities="<%= countries[country]%>"><%= country %></option>
+                              <% }); %>
+                        </select>
+                    </label>
+    
+                </div>
+
+                <div class="city filter-design">
+                      
+                    <label for="city-dropdown">City <br>
+                        <select id="city-dropdown">
+                            <option value="">Select</option>
+                            <% if (filters?.country) { %>
+                                <% countries[filters.country].forEach((city) => { %>
+                                    <% let attr = (city === filters?.city) ? 'selected' : '' %>
+                                    <option <%= attr %> value="<%= city %>" class="drop-down-option-design"><%= city %></option>
+                                <% }); %>
+                            <% } %>
+                        </select>
+                    </label>
+                    
+    
+                </div>
+    
+                <div class="experience filter-design">
+                      
+                    <label for="experience-dropdown">Experience <br>
+                        <select id="experience-dropdown">
+                            <option value="">Select</option>
+                            <% for (let i = 1; i < 21; i++) { %>
+                                <% let attr = (i == filters?.experience) ? 'selected' : '' %>
+                                <option value="<%= i %>" <%= attr %>>< <%= i %></option>
+                            <% } %>
+                        </select>
+                        
+                    </label>
+    
+                </div>
+    
+                <div class="type filter-design">
+                      
+                    <label for="type-dropdown">Type <br>
+                        <select id="type-dropdown">
+                            <option value="">Select</option>
+                            <% Object.values(jobTypes).forEach(type => { %>
+                                <% let attr %>
+                                <% if (type === filters.type){ %>
+                                    <% attr = "selected" %>
+                               <% } %>
+                                <option value="<%= type %>"  <%= attr %> class=""><%= type %></option>
+                            <% }); %>
+                        </select>
+                    </label>
+    
+                </div>
+        
+            </div>
+    
+    
+        </div>
+    
+        <%-include ('../templates/jobListingDesign/index.ejs')%>
+
+    </div>
+
+</body>
+<script src="/mainUI/script.js" type="module"></script>
+</html>

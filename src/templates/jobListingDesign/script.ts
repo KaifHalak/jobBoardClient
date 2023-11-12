@@ -1,10 +1,10 @@
-const UI = {
+const BTNS_UI = {
     ALL_MORE_INFO_BTNS: document.querySelectorAll(".more-info-btn") as NodeListOf<HTMLButtonElement>,
     ALL_SAVE_JOB_BTNS: document.querySelectorAll(".save-job-btn") as NodeListOf<HTMLButtonElement>,
     ALL_UNSAVE_JOB_BTNS: document.querySelectorAll(".unsave-job-btn") as NodeListOf<HTMLButtonElement>
 }
 
-UI.ALL_MORE_INFO_BTNS.forEach((eachBtn) => {
+BTNS_UI.ALL_MORE_INFO_BTNS.forEach((eachBtn) => {
 
     eachBtn.addEventListener("click", (event) => {
         let target = event.target as HTMLButtonElement
@@ -14,13 +14,13 @@ UI.ALL_MORE_INFO_BTNS.forEach((eachBtn) => {
 
 })
 
-UI.ALL_SAVE_JOB_BTNS.forEach((eachBtn) => {
+BTNS_UI.ALL_SAVE_JOB_BTNS.forEach((eachBtn) => {
 
     eachBtn.addEventListener("click", SaveJob)
 
 })
 
-UI.ALL_UNSAVE_JOB_BTNS.forEach((eachBtn) => {
+BTNS_UI.ALL_UNSAVE_JOB_BTNS.forEach((eachBtn) => {
     eachBtn.addEventListener("click", UnSaveJob)
 })
 

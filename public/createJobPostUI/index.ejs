@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/createJobPostUI/style.css">
+</head>
+<body>
+    <span class="page-heading">Create a Job Post</span>
+
+    <div class="main-container">
+
+        <!-- Job Title -->
+
+        <div class="option-design">
+            <span class="option-heading">Job Title</span>
+            <div style="display: flex; flex-direction: column; flex-grow: 1;">
+                <input type="text" class="job-title-input-field input-field-design" placeholder="e.g. Software Engineer">
+                <span class="job-title-error error-msg-design">required*</span>
+            </div>
+        </div>
+
+        <!-- Location -->
+
+        <div class="option-design">
+            <span class=" option-heading">Location</span>
+
+            <div style="display: flex; flex-direction: column; flex-grow: 1;">
+                <label for="country-dropdown"> Country
+                    <select id="country-dropdown" class="drop-down-design">
+                        <option value="" class="drop-down-option-design">Select</option>
+                        <% Object.keys(countries).sort().forEach(country => { %>
+                          <option value="<%= country %>" class="drop-down-option-design" cities="<%= countries[country]%>"><%= country %></option>
+                        <% }); %>
+                    </select>
+                </label>
+                <span class="country-error error-msg-design">required*</span>
+            </div>
+
+
+            <div style="display: flex; flex-direction: column; flex-grow: 1;">
+                <label for="city-dropdown"> City
+                    <select id="city-dropdown" class="drop-down-design">
+                        <option value="" class="drop-down-option-design">Select</option>
+                    </select>
+                </label>
+                <span class="city-error error-msg-design">required*</span>
+            </div>
+
+        </div>
+
+        <!-- Company Name -->
+
+        <div class="option-design">
+            <span class="option-heading">Company Name</span>
+            
+            <div style="display: flex; flex-direction: column; flex-grow: 1;">
+                <input type="text" class="company-name-input-field input-field-design" placeholder="e.g. ABC Tech">
+                <span class="company-name-error error-msg-design">required*</span>
+            </div>
+
+        </div>
+
+        <!-- About Company -->
+
+        <div class="option-design">
+            <span class="option-heading">About Company</span>
+            
+            <div style="display: flex; flex-direction: column; flex-grow: 1;">
+                <textarea type="text" class="about-company-text-area text-area-design" placeholder="e.g. ABC Tech is ..." cols="30" rows="10"></textarea>
+                <span class="about-company-error error-msg-design">required*</span>
+            </div>
+
+        </div>
+
+        <!-- Job Description -->
+
+        <div class="option-design">
+            <span class="option-heading">Job Description</span>
+            <div style="display: flex; flex-direction: column; flex-grow: 1;">
+                <textarea class="job-description-text-area text-area-design" cols="100" rows="10" placeholder="e.g. You will be responsible for..."></textarea>
+                <span class="job-description-error error-msg-design">required*</span>
+            </div>
+        </div>
+
+        <!-- Job Requirements -->
+
+        <div class="option-design">
+            <span class="option-heading">Job Requirements</span>
+            
+            <div style="display: flex; flex-direction: column; flex-grow: 1;">
+                <textarea class="job-requirements-text-area text-area-design" cols="30" rows="10" placeholder="e.g. Degree, Softskills"></textarea>
+                <span class="job-requirements-error error-msg-design">required*</span>
+            </div>
+
+        </div>
+
+        <!-- Experience -->
+
+        <div class="option-design">
+            <span class="option-heading">Minimum Experience Needed</span>
+
+            <div style="display: flex; flex-direction: column; flex-grow: 1;">
+                <input type="number" class="experience-needed-input-field input-field-design" placeholder="e.g. 1">
+                <span class="experience-needed-error error-msg-design">required*</span>
+            </div>
+
+        </div>
+
+        <!-- Employment Type -->
+
+        <div class="option-design">
+            <span class="option-heading">Employment Type</span>
+            
+            <div style="display: flex; flex-direction: column; flex-grow: 1;">
+                <select id="employment-type-dropdown" class="drop-down-design">
+                    <option value="" class="drop-down-option-design">Select</option>
+                    <option value="full-time" class="drop-down-option-design">Full time</option>
+                    <option value="part-time" class="drop-down-option-design">Part time</option>
+                    <option value="internship" class="drop-down-option-design">Internship</option>
+                    <option value="contract" class="drop-down-option-design">Contract</option>
+                    <option value="remote" class="drop-down-option-design">Remote</option>
+                </select>
+                <span class="employment-type-error error-msg-design">required*</span>
+            </div>
+
+        </div>
+
+        <!-- Monthly Compensation -->
+
+        <div class="option-design">
+            <span class="option-heading">Monthly Compensation</span>
+            
+            <div style="display: flex; flex-direction: column; flex-grow: 1;">
+                <label for="min-monthly-compensation"> Min $
+                    <input type="number" id="min-monthly-compensation" class="min-monthly-compensation-input-field input-field-design">
+                </label>
+                <span class="min-monthly-error error-msg-design">required*</span>
+            </div>
+
+            <div style="display: flex; flex-direction: column; flex-grow: 1;">
+            <label for="max-monthly-compensation"> Max $
+                <input type="number" id="max-monthly-compensation" class="max-monthly-compensation-input-field input-field-design">
+            </label>
+            <span class="max-monthly-error error-msg-design">required*</span>
+            </div>
+
+        </div>
+
+        <!-- Contact Information -->
+
+        <div class="option-design">
+            <span class="option-heading">Contact Information</span>
+            
+            <div class="contact-info-container">
+
+                <div style="display: flex; flex-direction: column; flex-grow: 1;">
+                    <label for="phone-input-field"> Phone <br>
+                        <input type="text" id = "phone-input-field" class="phone-input-field input-field-design" placeholder="e.g. +968 77885478">
+                    </label>
+                    <span class="phone-num-error error-msg-design">required*</span>
+                </div>
+                
+
+                <div style="display: flex; flex-direction: column; flex-grow: 1;">
+                    <label for="email-input-field"> Email <br>
+                        <input type="text" id = "email-input-field" class="email-input-field input-field-design" placeholder="e.g. steve@abc.com">
+                    </label>
+                    <span class="email-error error-msg-design">required*</span>
+                </div>
+    
+
+                <div style="display: flex; flex-direction: column; flex-grow: 1;">
+                    <label for="linkedin-input-field"> Linkedin <br>
+                        <input type="text" id="linkedin-input-field" class="linkedin-input-field input-field-design" placeholder="e.g. linkedin.com/in/steve/">
+                    </label>
+                    <span class="linkedin-error error-msg-design">required*</span>
+                </div>
+
+
+                <div style="display: flex; flex-direction: column; flex-grow: 1;">
+                    <label for="website-input-field"> Website <br>
+                        <input type="text" id="website-input-field"  class="website-input-field input-field-design" placeholder="e.g. abc.com">
+                    </label>
+                    <!-- <span class="website-error error-msg-design">required*</span> -->
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <!-- Application Deadline -->
+
+        <div class="option-design">
+            <span class="option-heading">Application Deadline</span>
+            
+            <div style="display: flex; flex-direction: column; flex-grow: 1;">
+                <input type="date" class="application-deadline-input-field  input-field-design">
+                <span class="application-deadline-error error-msg-design">required*</span>
+            </div>
+
+        </div>
+
+    </div>
+    <span class="overall-error error-msg-design hide"></span> <br>
+    <button class="create-job-post-btn">Create Job Post</button>
+
+    
+</body>
+<script src="/createJobPostUI/script.js" type="module"></script>
+</html>

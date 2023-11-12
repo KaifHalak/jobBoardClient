@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/viewJobPostUI/style.css">
+</head>
+<body>
+    
+    <div class="main-container">
+
+        <div class="header-container">
+            <span class="main-heading"><%= jobInfo.jobTitle%></span>
+            <span>Views: <%= jobInfo.views %></span>
+        </div>
+
+        <span class="heading">Company</span>
+
+        <div class="company-container container-style">
+
+            <label for=""><br> Company Name
+                <p> <%= jobInfo.companyName %> </p>
+            </label>
+
+            <label for=""><br> About Company
+                <p> <%= jobInfo.aboutCompany %> </p>
+            </label>
+
+        </div>
+
+        <span class="heading">Job</span>
+
+        <div class="job-container container-style">
+
+            <label for=""><br> Job Title
+                <p> <%= jobInfo.jobTitle %> </p>
+            </label>
+
+            <label for=""><br> Location
+                <p> <%= jobInfo.country %>,  <%= jobInfo.city %></p>
+            </label>
+
+            <label for=""><br> Job Description
+                <p> <%= jobInfo.jobDescription %> </p>
+            </label>
+
+            
+            <label for=""><br> Job Requirements
+                <p> <%= jobInfo.jobRequirements %> </p>
+            </label>
+
+            <label for=""><br> Job Type
+                <p> <%= jobInfo.type %> </p>
+            </label>
+
+            <label for=""><br>Minimum Experience Needed
+                <p> <%= jobInfo.experience %> </p>
+            </label>
+
+            
+            <label for=""><br> Monthly Compensation
+                <p> <%= jobInfo.lowerBoundMonthlyCompensation$ %>$ to  <%= jobInfo.upperBoundMonthlyCompensation$ %>$</p>
+            </label>
+
+            <label for=""><br> Application Deadline
+                <p> <%= jobInfo.applicationDeadline %> </p>
+            </label>
+
+
+
+        </div>
+
+        <span class="heading">Contact Details</span>
+
+        <div class="contact-details-container container-style">
+
+            <label for=""><br> Phone
+                <p> <%= jobInfo.phone %> </p>
+            </label>
+
+            <label for=""><br> Email
+                <p> <%= jobInfo.email %> </p>
+            </label>
+
+            <label for=""><br> Linkedin
+                <p> <%= jobInfo.linkedin %> </p>
+            </label>
+
+            <label for=""><br> Website
+                <p> <%= jobInfo.website %> </p>
+            </label>
+
+        </div>
+
+    </div>
+
+</body>
+<script src="/viewJobPostUI/script.js" type="module"></script>
+</html>

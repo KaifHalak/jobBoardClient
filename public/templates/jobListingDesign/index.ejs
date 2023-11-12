@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="/templates/jobListingDesign/style.css">
+
+<div class="all-jobs-container">
+        
+    <% allJobs.forEach((jobInfo) => { %>
+        <div class="job-listing">
+            
+            <div class="heading">
+                <span><%= jobInfo.jobTitle.slice(0,20)%> ( <%= jobInfo.type.toUpperCase() %> )</span>
+
+                <div class="location-and-type job-listing-design">
+                    <span><%= jobInfo.country %>, <%= jobInfo.city %></span>
+                </div>
+
+            </div>
+
+            <div class="company-name job-listing-design">
+                <span class="title">Company</span>
+                <p><%= jobInfo.companyName.slice(0,40)%></p>
+            </div>
+
+            <div class="job-description job-listing-design">
+                <span class="title">Job Description</span>
+                <p><%= jobInfo.jobDescription.slice(0,210)%></p>
+            </div>
+
+            <div class="job-requirements job-listing-design">
+                <span class="title">Job Requirements</span>
+                <p><%= jobInfo.jobRequirements.slice(0,210) %></p>
+            </div>
+
+            
+            <div class="experience job-listing-design">
+                <span class="title">Minimum Experience</span>
+                <p><%= jobInfo.experience %></p>
+            </div>
+
+            <div class="footer">
+                <%
+                    let saveJobBtnClass;
+                    let saveJobBtnText
+                    if (allSavedJobIds.includes(jobInfo.jobId)) {
+                        saveJobBtnClass = "unsave-job-btn";
+                        saveJobBtnText = "Unsave Job"
+                    } else {
+                        saveJobBtnClass = "save-job-btn";
+                        saveJobBtnText = "Save Job"
+                    }
+                %>
+            
+                <button class="more-info-btn" id="<%= jobInfo.jobId %>">More info</button>
+                <button class="<%= saveJobBtnClass %>" id="<%= jobInfo.jobId %>"><%= saveJobBtnText %></button>
+            </div>
+
+        </div>
+   <% }) %>
+
+</div>
+
+<script src="/templates/jobListingDesign/script.js" type="module"></script>
