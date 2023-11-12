@@ -1,0 +1,108 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    background-color: #1F1F1F;
+    width: 100%;
+    height: 100%;
+    display: block;
+    font-size: 62.5%;
+
+}
+
+body{
+    padding: 40px;
+}
+
+
+/* All Job Listings */
+
+.all-jobs-container{
+    display: grid;
+    grid-template-columns: repeat(3, 35rem);
+    gap: 5rem; 
+    justify-content: center;
+}
+
+.job-listing{
+    width: 35rem;
+    height: 50rem;
+    background-color: rgb(43,43,43);
+    border-radius: 10px;
+    font-family: sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    padding: 20px;
+    
+}
+
+.job-listing .heading{
+    color: white;
+    font-size: 2.8rem;
+    text-align: left;   
+    width: 100%;
+    margin: 5px 0px;
+}
+
+.job-listing .title{
+    color: white;
+    font-weight: 600;
+    margin: 10px 0px;
+    font-size: inherit;
+    font-size: 1.2rem;
+}
+
+.job-listing p{ 
+    color: white;
+    font-size: 1.2rem;
+    
+}
+
+.job-listing-design{    
+    display:flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+
+    margin: 10px 0px;
+    width: 100%;
+    color: white;
+    font-size: 2rem;
+}
+
+
+.job-listing .footer{
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+
+    width: 100%;
+}
+
+.job-listing .footer button{
+    width: 5rem;
+    height: 2rem;
+    font-size: 1rem;
+    margin: 10px 3px;
+    cursor: pointer;
+    border: 1px solid black;
+    transition: background-color 0.1s ease-in-out;
+}
+
+.job-listing .footer button:hover{
+    color: black;
+    background-color: #0070ff99;
+}
+
+
+
+
+

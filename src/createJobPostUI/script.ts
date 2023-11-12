@@ -212,7 +212,7 @@ function ValidateEmail(email: string){
 
 
 async function SendReqToServer(payload: any){
-    let url = "/jobs/post"
+    let url = "/jobs/create"
     let options = {
         method: "POST",
         headers: {'Content-Type': 'application/json' },
