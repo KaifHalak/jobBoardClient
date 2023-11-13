@@ -1,4 +1,3 @@
-{
 const UI = {
     EMAIL_INPUT_FIELD: document.querySelector("#login-email-input-field") as HTMLInputElement,
     PASSWORD_INPUT_FIELD: document.querySelector("#password-input-field") as HTMLInputElement,
@@ -44,18 +43,21 @@ UI.LOGIN_BTN.addEventListener("click", async () => {
         return UI.SERVER_ERROR_MESSAGE.classList.add("hide")
     }
 
-    // Case to case server error (ex: if this account doesn't exist )    
+    // Case to case server error   
     if (payload?.error){
         UI.CUSTOM_SERVER_ERROR_MESSAGE.innerHTML = payload.error
         UI.CUSTOM_SERVER_ERROR_MESSAGE.classList.remove("hide")
     }
 
     if (payload?.url){
+        // redirect user
         return window.location.href = payload?.url
     }
 
 })
 
+
+// Hide the respective error messages when there is a change in the input fields
 
 UI.EMAIL_INPUT_FIELD.addEventListener("input", () => {
     UI.EMAIL_ERROR_MESSAGE.classList.add("hide")
@@ -69,19 +71,13 @@ UI.PASSWORD_INPUT_FIELD.addEventListener("input", () => {
 
 
 
-// Helper Functions
-
 function ValidateEmail(email: string){
     const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return pattern.test(email);
 }
 
 function ValidatePassword(password: string){
-    let length = 6
-    if (password.length >= length){
-        return true
-    }
-    return false
+    return password.length >= 6
 }
 
 async function SendLoginRequest(email:string, password: string){
@@ -102,9 +98,9 @@ async function SendLoginRequest(email:string, password: string){
     })
     
     .catch((error) => {
+        // server offline
         return null
     })
 
 
-}
 }

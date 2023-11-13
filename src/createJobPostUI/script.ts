@@ -125,7 +125,6 @@ async function CheckForAllValues(){
         return 
     }
 
-    //Validation checks needed
 
     let phoneNum = UI.PHONE_INPUT_FIELD.value
     if (!ValidatePhoneNum(phoneNum)){
@@ -135,7 +134,6 @@ async function CheckForAllValues(){
     }
 
     let email = UI.EMAIL_INPUT_FIELD.value
-
     if (!ValidateEmail(email)){
         overallErrorMsg.innerText = "Incorrect email format. Please follow the example given"
         overallErrorMsg.classList.remove("hide")
@@ -143,7 +141,7 @@ async function CheckForAllValues(){
     }
 
 
-    // Optional
+    // Website is optional
     let website = UI.WEBSITE_INPUT_FIELD.value
 
     let payload = {
@@ -165,38 +163,39 @@ async function CheckForAllValues(){
         applicationDeadline
     }
 
-
-    let results = await SendReqToServer(payload)
+    let result = await SendReqToServer(payload)
 
     
 
-    if (!results){
+    if (!result){
         // server offline
         overallErrorMsg.innerText = "Server error. Please try again later"
     }
 
 
-    if (results?.error){
+    if (result?.error){
         // server error
-        overallErrorMsg.innerText = results?.error
+        overallErrorMsg.innerText = result?.error
     }
 
-    if (results?.status){
+    if (result?.status){
         // success
         overallErrorMsg.style.color = "green"
         overallErrorMsg.innerText = "Success"
+    }
+
+    if (result?.url){
+        // If server needs client to redirect
+        return window.location.href = result?.url
     }
 
     overallErrorMsg.classList.remove("hide")
 
     setTimeout(() => {
         overallErrorMsg.classList.add("hide")
-    },5 * 1000)
+    },3 * 1000)
 
 }
-
-
-
 
 
 
@@ -227,6 +226,7 @@ async function SendReqToServer(payload: any){
     })
     
     .catch((error) => {
+        // server offline
         return null
     })
 }

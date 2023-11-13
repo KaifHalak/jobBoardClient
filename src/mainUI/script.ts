@@ -7,6 +7,8 @@ const UI = {
     JOB_SEARCH_INPUT_FIELD: document.querySelector(".job-search-input-field") as HTMLInputElement
 }
 
+// Filters
+
 UI.JOB_TYPE_DROPDOWN.addEventListener("change", (event) => {
     let target = event.target as HTMLSelectElement
     let selectedOption = target.options[target.selectedIndex]
@@ -52,7 +54,6 @@ UI.COUNTRY_DROPDOWN.addEventListener("change", (event) => {
     window.location.href = currentUrl.toString()
 })
 
-
 UI.CITY_DROPDOWN.addEventListener("change", (event) => {
     let target = event.target as HTMLSelectElement
     let selectedOption = target.options[target.selectedIndex]
@@ -63,10 +64,14 @@ UI.CITY_DROPDOWN.addEventListener("change", (event) => {
 })
 
 
+
+// Search bar
+
 // Debouncing
 
 let timeout: any
 let delay = 1 * 1000
+
 UI.JOB_SEARCH_INPUT_FIELD.addEventListener("input", (event) => {
 
     if (timeout){
@@ -75,7 +80,6 @@ UI.JOB_SEARCH_INPUT_FIELD.addEventListener("input", (event) => {
 
     timeout = setTimeout(() => {
 
-        // work here
         let target = event.target! as HTMLInputElement
         
         let currentUrl = new URL(window.location.href)  

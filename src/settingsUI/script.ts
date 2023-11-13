@@ -20,6 +20,7 @@ const UI = {
 
 let currentUsername = UI.USERNAME_INPUT_FIELD.value
 
+// Enable the "save" button when the username is changed
 UI.USERNAME_INPUT_FIELD.addEventListener("input", () => {
     UI.SAVE_USERNAME_BTN.disabled = false
 })
@@ -28,31 +29,38 @@ UI.USERNAME_INPUT_FIELD.addEventListener("input", () => {
 UI.SAVE_USERNAME_BTN.addEventListener("click", async () => {
     
     let newUsername = UI.USERNAME_INPUT_FIELD.value
+    // To prevent unnecessary API calls
     if (newUsername === currentUsername){
         return
     }
 
-    let paylaod = await SendUpdateUsernameReq(newUsername)
+    let result = await SendUpdateUsernameReq(newUsername)
 
-    if (!paylaod){
+    if (!result){
         //server offline
         UI.USERNAME_CHANGE_MSG.innerText = "Server error. Please try again later."
         UI.USERNAME_CHANGE_MSG.style.color = "red"
     }
 
-    if (paylaod?.error){
+    if (result?.error){
         // Case to case server error
-        UI.USERNAME_CHANGE_MSG.innerText = paylaod?.error
+        UI.USERNAME_CHANGE_MSG.innerText = result?.error
         UI.USERNAME_CHANGE_MSG.style.color = "red"
     }
 
-    if (paylaod?.status){
+    if (result?.status){
         // successfull
         UI.USERNAME_CHANGE_MSG.innerText = "Successful"
         UI.USERNAME_CHANGE_MSG.style.color = "green"
         UI.SAVE_USERNAME_BTN.disabled = true
     }
 
+    if (result?.url){
+        // If server needs the client to redirect
+        return window.location.href = result?.url
+    }
+
+    // Hide the result message after 3 sec
     UI.USERNAME_CHANGE_MSG.classList.remove("hide")
     setTimeout(() => {
         UI.USERNAME_CHANGE_MSG.classList.add("hide")
@@ -61,11 +69,12 @@ UI.SAVE_USERNAME_BTN.addEventListener("click", async () => {
 
 })
 
-
+// Show change email popup when the "Change email" button is clicked
 UI.CHANGE_EMAIL_BTN.addEventListener("click", () => {
     UI.MAIN_EMAIL_POPUP_CONTAINER.classList.remove("hide")
 })
 
+// Show change password popup when the "Change password" button is clicked
 UI.CHANGE_PASSWORD_BTN.addEventListener("click", () => {
     UI.MAIN_PASSWORD_POPUP_CONTAINER.classList.remove("hide")
 })

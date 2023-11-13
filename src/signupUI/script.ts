@@ -1,4 +1,3 @@
-{
 const UI = {
     USERNAME_INPUT_FIELD: document.querySelector("#signin-username-input-field") as HTMLInputElement,
     EMAIL_INPUT_FIELD: document.querySelector("#signin-email-input-field") as HTMLInputElement,
@@ -20,9 +19,9 @@ UI.SIGN_IN_BTN.addEventListener("click", async () => {
     let email = UI.EMAIL_INPUT_FIELD.value
     let password = UI.PASSWORD_INPUT_FIELD.value
 
-    let sendRequestFlag = true
-
     // Validation
+
+    let sendRequestFlag = true
 
     if (!username){
         UI.USERNAME_ERROR_MSG.classList.remove("hide")
@@ -52,7 +51,7 @@ UI.SIGN_IN_BTN.addEventListener("click", async () => {
         return
     }
 
-    // Case to case server error (ex: if an account with this emai already exists )
+    // Case to case server error
     if (payload?.error){
         UI.CUSTOM_SERVER_ERROR_MESSAGE.innerText = payload.error
         UI.CUSTOM_SERVER_ERROR_MESSAGE.classList.remove("hide")
@@ -68,6 +67,7 @@ UI.SIGN_IN_BTN.addEventListener("click", async () => {
 })
 
 
+// Hide the respective error messages when there is a change in the input fields
 
 UI.USERNAME_INPUT_FIELD.addEventListener("input", () => {
     UI.USERNAME_ERROR_MSG.classList.add("hide")
@@ -85,7 +85,6 @@ UI.PASSWORD_INPUT_FIELD.addEventListener("input", () => {
 })
 
 
-// Helper Functions
 
 function ValidateEmail(email: string){
     const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -93,11 +92,7 @@ function ValidateEmail(email: string){
 }
 
 function ValidatePassword(password: string){
-    let length = 6
-    if (password.length >= length){
-        return true
-    }
-    return false
+    return password.length >= 6
 }
 
 async function SendSignupRequest(username: string, email: string, password: string){
@@ -123,4 +118,3 @@ async function SendSignupRequest(username: string, email: string, password: stri
 
 }
 
-}

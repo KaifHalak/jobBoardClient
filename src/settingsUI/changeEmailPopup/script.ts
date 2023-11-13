@@ -11,14 +11,14 @@ const CHANGE_EMAIL_POPUP_UI = {
     CHANGE_EMAIL_STATUS_MSG: document.querySelector(".email-status-msg") as HTMLSpanElement
 }
 
+// Prevent the popup from closing when the user clicks ON the popup
 CHANGE_EMAIL_POPUP_UI.POPUP_CONTAINER.addEventListener("mousedown",(event) => {
     event.stopPropagation()
 })
 
+// Close the popup when the user clicks out of it
 CHANGE_EMAIL_POPUP_UI.MAIN_CONTAINER.addEventListener("mousedown", () => {
-    CHANGE_EMAIL_POPUP_UI.NEW_EMAIL_INPUT_FIELD.value = ""
-    CHANGE_EMAIL_POPUP_UI.PASSWORD_INPUT_FIELD.value = ""
-    CHANGE_EMAIL_POPUP_UI.MAIN_CONTAINER.classList.add("hide")
+    ResetPopup()
 })
 
 
@@ -26,7 +26,9 @@ CHANGE_EMAIL_POPUP_UI.CHANGE_EMAIL_BTN.addEventListener("click", async () => {
     let currentEmail = CHANGE_EMAIL_POPUP_UI.EMAIL_VALUE.innerText
     let newEmail = CHANGE_EMAIL_POPUP_UI.NEW_EMAIL_INPUT_FIELD.value
     let password = CHANGE_EMAIL_POPUP_UI.PASSWORD_INPUT_FIELD.value
-    
+
+    // Validation
+
     let sendRequestFlag = true
     let changeEmailStatusMsg = CHANGE_EMAIL_POPUP_UI.CHANGE_EMAIL_STATUS_MSG
 
@@ -43,28 +45,34 @@ CHANGE_EMAIL_POPUP_UI.CHANGE_EMAIL_BTN.addEventListener("click", async () => {
     }
 
     if (sendRequestFlag){
-        let results = await SendChangeEmailRequest(newEmail, password)
+        let result = await SendChangeEmailRequest(newEmail, password)
 
-        if (!results){
+        if (!result){
+            //server offline
             changeEmailStatusMsg.innerText = "Server error. Please try again later"
             changeEmailStatusMsg.style.color = "red"
         }
     
-        if (results?.error){
-            changeEmailStatusMsg.innerText = results?.error
+        if (result?.error){
+            // Case to case server error
+            changeEmailStatusMsg.innerText = result?.error
             changeEmailStatusMsg.style.color = "red"
         }
     
-        if (results?.status){
+        if (result?.status){
+            // successfull
             changeEmailStatusMsg.innerText = "Email changed successfully."
             changeEmailStatusMsg.style.color = "green"
             CHANGE_EMAIL_POPUP_UI.EMAIL_VALUE.innerText = newEmail
         }
+
+        if (result?.url){
+            // If server needs the client to redirect
+            return window.location.href = result?.url
+        }
     }
 
-    CHANGE_EMAIL_POPUP_UI.NEW_EMAIL_INPUT_FIELD.value = ""
-    CHANGE_EMAIL_POPUP_UI.PASSWORD_INPUT_FIELD.value = ""
-    CHANGE_EMAIL_POPUP_UI.MAIN_CONTAINER.classList.add("hide")
+    ResetPopup()
 
     changeEmailStatusMsg.classList.remove("hide")
     setTimeout(() => {
@@ -102,4 +110,10 @@ async function SendChangeEmailRequest(newEmail: string, password: string){
 function ValidateEmail(email: string){
     const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return pattern.test(email);
+}
+
+function ResetPopup(){
+    CHANGE_EMAIL_POPUP_UI.NEW_EMAIL_INPUT_FIELD.value = ""
+    CHANGE_EMAIL_POPUP_UI.PASSWORD_INPUT_FIELD.value = ""
+    CHANGE_EMAIL_POPUP_UI.MAIN_CONTAINER.classList.add("hide")
 }

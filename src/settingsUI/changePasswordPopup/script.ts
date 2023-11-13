@@ -10,20 +10,21 @@ const CHANGE_PASSWORD_POPUP_UI = {
     CHANGE_PASSWORD_STATUS_MSG: document.querySelector(".password-status-msg") as HTMLSpanElement
 }
 
+// Prevent the popup from closing when the user clicks ON the popup
 CHANGE_PASSWORD_POPUP_UI.POPUP_CONTAINER.addEventListener("mousedown",(event) => {
     event.stopPropagation()
 })
 
-
+// Close the popup when the user clicks out of it
 CHANGE_PASSWORD_POPUP_UI.MAIN_CONTAINER.addEventListener("mousedown", () => {
-    CHANGE_PASSWORD_POPUP_UI.CURRENT_PASSWORD_INPUT_FIELD.value = ""
-    CHANGE_PASSWORD_POPUP_UI.NEW_PASSWORD_INPUT_FIELD.value = ""
-    CHANGE_PASSWORD_POPUP_UI.MAIN_CONTAINER.classList.add("hide")
+    ResetPopup()
 })
 
 CHANGE_PASSWORD_POPUP_UI.CHANGE_PASSWORD_BTN.addEventListener("click", async () => {
     let currentPassword = CHANGE_PASSWORD_POPUP_UI.CURRENT_PASSWORD_INPUT_FIELD.value
     let newPassword = CHANGE_PASSWORD_POPUP_UI.NEW_PASSWORD_INPUT_FIELD.value
+
+    // Validation
 
     let sendRequestFlag = true
     let changePasswordStatusMsg = CHANGE_PASSWORD_POPUP_UI.CHANGE_PASSWORD_STATUS_MSG
@@ -35,32 +36,39 @@ CHANGE_PASSWORD_POPUP_UI.CHANGE_PASSWORD_BTN.addEventListener("click", async () 
     }
 
     if (sendRequestFlag){
-        let results = await SendChangePasswordRequest(currentPassword, newPassword)
+        let result = await SendChangePasswordRequest(currentPassword, newPassword)
 
-        if (!results){
+        if (!result){
+            //server offline
             changePasswordStatusMsg.innerText = "Server error. Please try again later"
             changePasswordStatusMsg.style.color = "red"
         }
     
-        if (results?.error){
-            changePasswordStatusMsg.innerText = results.error
+        if (result?.error){
+            // Case to case server error
+            changePasswordStatusMsg.innerText = result.error
             changePasswordStatusMsg.style.color = "red"
         }
     
-        if (results?.status){
+        if (result?.status){
+             // successfull
             changePasswordStatusMsg.innerText = "Password changed successfully"
             changePasswordStatusMsg.style.color = "green"
         }
+
+        if (result?.url){
+            // If server needs the client to redirect
+            return window.location.href = result?.url
+        }
+
     }
 
-    CHANGE_PASSWORD_POPUP_UI.CURRENT_PASSWORD_INPUT_FIELD.value = ""
-    CHANGE_PASSWORD_POPUP_UI.NEW_PASSWORD_INPUT_FIELD.value = ""
-    CHANGE_PASSWORD_POPUP_UI.MAIN_CONTAINER.classList.add("hide")
+    ResetPopup()
 
     changePasswordStatusMsg.classList.remove("hide")
     setTimeout(() => {
         changePasswordStatusMsg.classList.add("hide")
-    }, 5 * 1000)
+    }, 3 * 1000)
 
 
     
@@ -71,7 +79,6 @@ CHANGE_PASSWORD_POPUP_UI.CHANGE_PASSWORD_BTN.addEventListener("click", async () 
 function ValidatePassword(password: string){
     return (password.length >= 6)
 }
-
 
 async function SendChangePasswordRequest(currentPassword: string, newPassword: string){
     let payload = {currentPassword, newPassword}
@@ -94,6 +101,8 @@ async function SendChangePasswordRequest(currentPassword: string, newPassword: s
     })
 }
 
-
-
-
+function ResetPopup(){
+    CHANGE_PASSWORD_POPUP_UI.CURRENT_PASSWORD_INPUT_FIELD.value = ""
+    CHANGE_PASSWORD_POPUP_UI.NEW_PASSWORD_INPUT_FIELD.value = ""
+    CHANGE_PASSWORD_POPUP_UI.MAIN_CONTAINER.classList.add("hide")
+}
