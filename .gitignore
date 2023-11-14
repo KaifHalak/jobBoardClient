@@ -3,3 +3,4 @@ notes.txt
 todo.txt
 public/**/*.js
 !public/**/*.ejs
+temp

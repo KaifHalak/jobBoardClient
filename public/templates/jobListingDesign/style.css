@@ -8,7 +8,8 @@
 
 .job-listing{
     width: 35rem;
-    height: 50rem;
+    /* height: 50rem; */
+    height: fit-content;
     background-color: rgb(43,43,43);
     border-radius: 10px;
     font-family: sans-serif;
