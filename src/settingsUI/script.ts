@@ -28,38 +28,49 @@ UI.USERNAME_INPUT_FIELD.addEventListener("input", () => {
 
 UI.SAVE_USERNAME_BTN.addEventListener("click", async () => {
     
+    let sendReq = true
+
     let newUsername = UI.USERNAME_INPUT_FIELD.value
     // To prevent unnecessary API calls
     if (newUsername === currentUsername){
         return
     }
 
-    let result = await SendUpdateUsernameReq(newUsername)
-
-    if (!result){
-        //server offline
-        UI.USERNAME_CHANGE_MSG.innerText = "Server error. Please try again later."
+    let validateUsername = ValidateUsername(newUsername)
+    if (validateUsername?.error){
+        UI.USERNAME_CHANGE_MSG.innerText = validateUsername.error
         UI.USERNAME_CHANGE_MSG.style.color = "red"
+        sendReq = false
     }
 
-    if (result?.error){
-        // Case to case server error
-        UI.USERNAME_CHANGE_MSG.innerText = result?.error
-        UI.USERNAME_CHANGE_MSG.style.color = "red"
-    }
+    if (sendReq){
+        let result = await SendUpdateUsernameReq(newUsername)
 
-    if (result?.status){
-        // successfull
-        UI.USERNAME_CHANGE_MSG.innerText = "Successful"
-        UI.USERNAME_CHANGE_MSG.style.color = "green"
-        UI.SAVE_USERNAME_BTN.disabled = true
+        if (!result){
+            //server offline
+            UI.USERNAME_CHANGE_MSG.innerText = "Server error. Please try again later."
+            UI.USERNAME_CHANGE_MSG.style.color = "red"
+        }
+    
+        if (result?.error){
+            // Case to case server error
+            UI.USERNAME_CHANGE_MSG.innerText = result?.error
+            UI.USERNAME_CHANGE_MSG.style.color = "red"
+        }
+    
+        if (result?.status){
+            // successfull
+            UI.USERNAME_CHANGE_MSG.innerText = "Successful"
+            UI.USERNAME_CHANGE_MSG.style.color = "green"
+            UI.SAVE_USERNAME_BTN.disabled = true
+        }
+    
+        if (result?.url){
+            // If server needs the client to redirect
+            return window.location.href = result?.url
+        }
     }
-
-    if (result?.url){
-        // If server needs the client to redirect
-        return window.location.href = result?.url
-    }
-
+   
     // Hide the result message after 3 sec
     UI.USERNAME_CHANGE_MSG.classList.remove("hide")
     setTimeout(() => {
@@ -78,6 +89,23 @@ UI.CHANGE_EMAIL_BTN.addEventListener("click", () => {
 UI.CHANGE_PASSWORD_BTN.addEventListener("click", () => {
     UI.MAIN_PASSWORD_POPUP_CONTAINER.classList.remove("hide")
 })
+
+
+function ValidateUsername(username: string){
+
+    let allowedPatterns = /^[a-zA-Z0-9_]+$/
+
+    if ( !(username.length >= 3 && username.length <= 20) ){
+        return {error : "Username must be between 3 and 20 characters"}
+    }
+
+    if ( !(allowedPatterns.test(username)) ){
+        return {error: "Only characters from A-Z, a-z, numbers, and underscores are allowed."}
+    }
+
+    return
+
+}
 
 
 async function SendUpdateUsernameReq(newUsername: string){

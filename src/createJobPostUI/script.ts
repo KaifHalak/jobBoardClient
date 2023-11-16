@@ -117,7 +117,6 @@ async function CheckForAllValues(){
         !minMonthlyCompen ||
         !maxMonthlyCompen ||
         !applicationDeadline ||
-        !linkedin ||
         !experienceNeeded
     ){
         overallErrorMsg.innerText = "Please fill in the required fields"

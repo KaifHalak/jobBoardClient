@@ -36,15 +36,25 @@
             </div>
 
             <div class="footer">
-                <%
+                <%  
+
                     let saveJobBtnClass;
                     let saveJobBtnText
+
+                    if ( !allSavedJobIds ){
+                        saveJobBtnClass = "unsave-job-btn";
+                        saveJobBtnText = "Unsave Job"
+                    }
+
+                    else {
+                        
                     if (allSavedJobIds.includes(jobInfo.jobId)) {
                         saveJobBtnClass = "unsave-job-btn";
                         saveJobBtnText = "Unsave Job"
                     } else {
                         saveJobBtnClass = "save-job-btn";
                         saveJobBtnText = "Save Job"
+                    }
                     }
                 %>
             

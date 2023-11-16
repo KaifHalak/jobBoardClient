@@ -23,7 +23,9 @@ UI.SIGN_IN_BTN.addEventListener("click", async () => {
 
     let sendRequestFlag = true
 
-    if (!username){
+    let validateUsername = ValidateUsername(username)
+    if (validateUsername?.error){
+        UI.USERNAME_ERROR_MSG.textContent = validateUsername.error
         UI.USERNAME_ERROR_MSG.classList.remove("hide")
         sendRequestFlag = false
     }
@@ -94,6 +96,23 @@ function ValidateEmail(email: string){
 function ValidatePassword(password: string){
     return password.length >= 6
 }
+
+function ValidateUsername(username: string){
+
+    let allowedPatterns = /^[a-zA-Z0-9_]+$/
+
+    if ( !(username.length >= 3 && username.length <= 20) ){
+        return {error : "Username must be between 3 and 20 characters"}
+    }
+
+    if ( !(allowedPatterns.test(username)) ){
+        return {error: "Only characters from A-Z, a-z, numbers, and underscores are allowed."}
+    }
+
+    return
+
+}
+
 
 async function SendSignupRequest(username: string, email: string, password: string){
 

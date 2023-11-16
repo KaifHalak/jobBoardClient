@@ -99,8 +99,11 @@ UI.SHOW_MORE_BTN.addEventListener("click", async () => {
 
     let numOfJobListings = document.querySelectorAll(".job-listing").length
 
-    let result = await GetMoreJobPostsRequest(numOfJobListings)
-    
+    let currentUrl = new URL(window.location.href)
+    currentUrl.searchParams.set("offset", numOfJobListings.toString())
+
+    let result = await GetMoreJobPostsRequest(currentUrl)
+
     if (!result){
         // server offline
         alert("SERVER ERROR! Please try again later")
@@ -112,7 +115,12 @@ UI.SHOW_MORE_BTN.addEventListener("click", async () => {
     }   
 
     if (result?.status){
+
         let { allJobs, allSavedJobIds } = result.status
+        if (allJobs.length === 0){
+            UI.SHOW_MORE_BTN.classList.add("hide")
+        }
+
         allJobs.forEach((jobInfo) => {
             AddJobsToUI(jobInfo, allSavedJobIds)
         })
@@ -195,9 +203,7 @@ function AddJobsToUI(jobInfo: any, allSavedJobIds: string[]){
 
 }
 
-async function GetMoreJobPostsRequest(offset: number){
-    // let payload = {offset}
-    let url = `/?offset=${offset}`
+async function GetMoreJobPostsRequest(url: URL){
     let options = {
         method: "POST",
         headers: {'Content-Type': 'application/json' }
