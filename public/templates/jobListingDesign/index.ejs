@@ -42,8 +42,15 @@
                     let saveJobBtnText
 
                     if ( !allSavedJobIds ){
-                        saveJobBtnClass = "unsave-job-btn";
-                        saveJobBtnText = "Unsave Job"
+
+                        if ( deleteJobs ){
+                            saveJobBtnClass = "delete-job-btn";
+                            saveJobBtnText = "Delete Job"
+                        } 
+                        else {
+                            saveJobBtnClass = "unsave-job-btn";
+                            saveJobBtnText = "Unsave Job"
+                        }
                     }
 
                     else {

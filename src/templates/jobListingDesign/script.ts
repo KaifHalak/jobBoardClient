@@ -1,7 +1,10 @@
 const BTNS_UI = {
     ALL_MORE_INFO_BTNS: document.querySelectorAll(".more-info-btn") as NodeListOf<HTMLButtonElement>,
     ALL_SAVE_JOB_BTNS: document.querySelectorAll(".save-job-btn") as NodeListOf<HTMLButtonElement>,
-    ALL_UNSAVE_JOB_BTNS: document.querySelectorAll(".unsave-job-btn") as NodeListOf<HTMLButtonElement>
+    ALL_UNSAVE_JOB_BTNS: document.querySelectorAll(".unsave-job-btn") as NodeListOf<HTMLButtonElement>,
+
+    // Only used when viewing your created jobs
+    ALL_DELETE_JOB_BTNS: document.querySelectorAll(".delete-job-btn") as NodeListOf<HTMLButtonElement>
 }
 
 // Listeners
@@ -22,6 +25,10 @@ BTNS_UI.ALL_SAVE_JOB_BTNS.forEach((eachBtn) => {
 
 BTNS_UI.ALL_UNSAVE_JOB_BTNS.forEach((eachBtn) => {
     eachBtn.addEventListener("click", UnSaveJob)
+})
+
+BTNS_UI.ALL_DELETE_JOB_BTNS.forEach((eachBtn) => {
+    eachBtn.addEventListener("click", DeleteJob)
 })
 
 
@@ -79,7 +86,33 @@ async function UnSaveJob(event: MouseEvent){
     }
 }
 
+async function DeleteJob(event: MouseEvent){
+    let target = event.target as HTMLButtonElement
+    let jobId = target?.id
+    let result = await SendRequestToServer("delete", jobId)
 
+    if (!result){
+        // server offline
+        return alert("SERVER ERROR. Please try again later.")
+    }
+
+    if (result?.error){
+        //case to case server error
+        return alert(`SERVER ERROR: ${result.error}`)
+    }
+
+    if (result?.status){
+        // success
+        let parentMostElement = target.parentNode!.parentNode as HTMLDivElement
+        parentMostElement.remove()
+        return
+    }
+
+    if (result?.url){
+        // if server needs to redirect client
+        return window.location.href = result.url
+    }
+}
 
 
 async function SendRequestToServer(action: string, jobId: string){
