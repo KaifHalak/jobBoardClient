@@ -8,18 +8,7 @@
 </head>
 <body>
     
-    <div class="sidebar-container">
-
-        <div class="my-account-container option-design">
-            <span>My account</span>
-        </div>
-
-        
-        <div class="settings-container option-design">
-            <span>Settings</span>
-        </div>
-
-    </div>
+    <%-include ('../templates/headerDesign/index.ejs', {page: 'Settings'})%>
 
     <div class="main-settings-container">
 
@@ -74,6 +63,8 @@
             </div>
 
         </div>
+
+        <button class="logout-btn button-design">Logout</button>
 
         <%-include ('./changeEmailPopup/index.ejs')%>
         <%-include ('./changePasswordPopup/index.ejs')%>

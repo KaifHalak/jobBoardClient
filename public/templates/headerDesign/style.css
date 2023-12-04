@@ -1,0 +1,34 @@
+
+.header{
+    padding: 20px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.header .home-btn{
+    width: 9rem;
+    height: 5rem;
+    font-size: 12px;
+
+    cursor: pointer;
+    border: 1px solid black;
+    transition: background-color 0.1s ease-in-out;
+    border-radius: 5px;
+}
+
+.header .home-btn:hover{
+    color: white;
+    background-color: #0070ff99;
+}
+
+.page-heading{
+    color: white;
+    font-size: 5rem;
+    margin-bottom: 10px;
+
+    width: 100%;
+}

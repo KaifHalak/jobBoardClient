@@ -11,6 +11,8 @@ const UI = {
     CHANGE_EMAIL_STATUS_MSG: document.querySelector(".email-status-msg") as HTMLSpanElement,
     CHANGE_PASSWORD_STATUS_MSG: document.querySelector(".password-status-msg") as HTMLSpanElement,
 
+    LOGOUT_BTN: document.querySelector(".logout-btn") as HTMLButtonElement,
+
     //CHANGE_EMAIL_POPUP_UI
     MAIN_EMAIL_POPUP_CONTAINER: document.querySelector(".main-email-popup-container") as HTMLDivElement,
 
@@ -88,6 +90,12 @@ UI.CHANGE_EMAIL_BTN.addEventListener("click", () => {
 // Show change password popup when the "Change password" button is clicked
 UI.CHANGE_PASSWORD_BTN.addEventListener("click", () => {
     UI.MAIN_PASSWORD_POPUP_CONTAINER.classList.remove("hide")
+})
+
+
+// Logout user
+UI.LOGOUT_BTN.addEventListener("click",async () => {
+    window.location.href = "/user/logout"
 })
 
 
