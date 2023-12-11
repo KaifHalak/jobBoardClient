@@ -8,10 +8,59 @@ const UI = {
     PASSWORD_ERROR_MESSAGE: document.querySelector(".password-error-msg") as HTMLSpanElement,
 
     SERVER_ERROR_MESSAGE: document.querySelector(".server-error-msg") as HTMLSpanElement,
-    CUSTOM_SERVER_ERROR_MESSAGE: document.querySelector(".custom-server-error-msg") as HTMLSpanElement
+    CUSTOM_SERVER_ERROR_MESSAGE: document.querySelector(".custom-server-error-msg") as HTMLSpanElement,
 
+    DEMO_1: document.querySelector(".demo-acct-1") as HTMLButtonElement,
+    DEMO_2: document.querySelector(".demo-acct-2") as HTMLButtonElement
 
 }
+
+UI.DEMO_1.addEventListener("click", async () => {
+
+    let email = "abc@gmail.com"
+    let password = "123456"
+
+    let payload = await SendLoginRequest(email, password)
+    if (!payload){
+        // Server offline
+        return UI.SERVER_ERROR_MESSAGE.classList.add("hide")
+    }
+
+    // Case to case server error   
+    if (payload?.error){
+        UI.CUSTOM_SERVER_ERROR_MESSAGE.innerHTML = payload.error
+        UI.CUSTOM_SERVER_ERROR_MESSAGE.classList.remove("hide")
+    }
+
+    if (payload?.url){
+        // redirect user
+        return window.location.href = payload?.url
+    }
+})
+
+UI.DEMO_2.addEventListener("click", async () => {
+
+    let email = "usman12k2@gmail.com"
+    let password = "123456"
+
+    let payload = await SendLoginRequest(email, password)
+    if (!payload){
+        // Server offline
+        return UI.SERVER_ERROR_MESSAGE.classList.add("hide")
+    }
+
+    // Case to case server error   
+    if (payload?.error){
+        UI.CUSTOM_SERVER_ERROR_MESSAGE.innerHTML = payload.error
+        UI.CUSTOM_SERVER_ERROR_MESSAGE.classList.remove("hide")
+    }
+
+    if (payload?.url){
+        // redirect user
+        return window.location.href = payload?.url
+    }
+})
+
 
 UI.LOGIN_BTN.addEventListener("click", async () => {
 
