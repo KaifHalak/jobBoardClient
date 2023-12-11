@@ -11,13 +11,18 @@ const UI = {
     CHANGE_EMAIL_STATUS_MSG: document.querySelector(".email-status-msg") as HTMLSpanElement,
     CHANGE_PASSWORD_STATUS_MSG: document.querySelector(".password-status-msg") as HTMLSpanElement,
 
+    CHANGE_PROFILE_PIC_CONTAINER: document.querySelector(".profile-pic-container") as HTMLDivElement,
+
     LOGOUT_BTN: document.querySelector(".logout-btn") as HTMLButtonElement,
 
     //CHANGE_EMAIL_POPUP_UI
     MAIN_EMAIL_POPUP_CONTAINER: document.querySelector(".main-email-popup-container") as HTMLDivElement,
 
     //CHANGE_PASSWORD_POPUP_UI
-    MAIN_PASSWORD_POPUP_CONTAINER: document.querySelector(".main-password-popup-container") as HTMLDivElement
+    MAIN_PASSWORD_POPUP_CONTAINER: document.querySelector(".main-password-popup-container") as HTMLDivElement,
+
+    //CHANGE_PROFILE_PIC_POPUP_UI
+    MAIN_CHANGE_PROFILE_PIC_CONTAINER: document.querySelector(".main-change-profile-pic-container") as HTMLDivElement
 }
 
 let currentUsername = UI.USERNAME_INPUT_FIELD.value
@@ -92,6 +97,10 @@ UI.CHANGE_PASSWORD_BTN.addEventListener("click", () => {
     UI.MAIN_PASSWORD_POPUP_CONTAINER.classList.remove("hide")
 })
 
+
+UI.CHANGE_PROFILE_PIC_CONTAINER.addEventListener("click", () => {
+    UI.MAIN_CHANGE_PROFILE_PIC_CONTAINER.classList.remove("hide")
+})
 
 // Logout user
 UI.LOGOUT_BTN.addEventListener("click",async () => {

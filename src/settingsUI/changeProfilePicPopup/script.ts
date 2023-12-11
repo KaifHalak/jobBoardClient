@@ -1,7 +1,21 @@
-const UI = {
+const CHANGE_PROFILE_PIC_UI = {
+    MAIN_CONTAINER: document.querySelector(".main-change-profile-pic-container") as HTMLDivElement,
+    POPUP_CONTAINER: document.querySelector(".change-profile-pic-container") as HTMLDivElement,
+
+
     BROWSE_FILE_BTN: document.querySelector(".browse-file-btn") as HTMLButtonElement,
     FILE_INPUT_FIELD: document.querySelector(".file-input-field") as HTMLInputElement
 }
+
+
+
+CHANGE_PROFILE_PIC_UI.POPUP_CONTAINER.addEventListener("mousedown", (event) => {
+    event.stopPropagation()
+})
+
+CHANGE_PROFILE_PIC_UI.MAIN_CONTAINER.addEventListener("mousedown", () => {
+    ResetPopup()
+})
 
 const SUPPORTED_FILE_TYPES = ["jpeg", "png", "jpg"]
 
@@ -11,10 +25,10 @@ const MAX_CHUNK_SIZE = 1000 // bytes
 
 type TFileSendStatus = "start" | "in-progress" | "end"
 
-UI.FILE_INPUT_FIELD.addEventListener("change", LoadImage)
+CHANGE_PROFILE_PIC_UI.FILE_INPUT_FIELD.addEventListener("change", LoadImage)
 
-UI.BROWSE_FILE_BTN.addEventListener("click", () => {
-    UI.FILE_INPUT_FIELD.click()
+CHANGE_PROFILE_PIC_UI.BROWSE_FILE_BTN.addEventListener("click", () => {
+    CHANGE_PROFILE_PIC_UI.FILE_INPUT_FIELD.click()
 })
 
 
@@ -155,6 +169,12 @@ async function ProcessServerRequest(slicedChunk: ArrayBuffer, fileSendStatus: TF
         window.location.href = result?.url
         return false
     }
+}
+
+
+function ResetPopup(){
+    CHANGE_PROFILE_PIC_UI.MAIN_CONTAINER.classList.add("hide")
+    CHANGE_PROFILE_PIC_UI.FILE_INPUT_FIELD.files = null
 }
 
 
