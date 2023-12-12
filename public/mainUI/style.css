@@ -151,6 +151,35 @@
 }
 
 
+.profile-container{
+    width: 80%;
+    padding: 10px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+
+    position: relative;
+    top: 23%;
+}
+
+.profile-pic{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 25px;
+
+    margin-right: 10px;
+}
+
+.profile-name{
+    color: white;
+    font-size: 13px;
+
+    text-align: center;
+}
+
+
 /*  Show More Button */
 
 .show-more-btn-container{
