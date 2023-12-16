@@ -1,3 +1,5 @@
+<script src="/packages/html2canvas.min.js"></script>
+
 <link rel="stylesheet" href="/settingsUI/changeProfilePicPopup/style.css">
 <body>
     
@@ -5,7 +7,27 @@
 
         <div class="change-profile-pic-container">
 
-            <button class="browse-file-btn">Browse Files</button>
+            <div style="display: flex; justify-content: center; align-items: center; ">
+
+                <div class="image-container">
+                    <img class="show-profile-pic-image" draggable="false">
+                </div>
+    
+                <div class="change-image-size-container">
+                    <button class="change-image-size-btn-design increase" disabled>+</button>
+                    <input type="number" class="change-image-size-input-field" value= 100 readonly>
+                    <button class="change-image-size-btn-design decrease" disabled>-</button>
+                </div>
+
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+
+                <button class="browse-img-btn img-btn-design">Browse Image</button>
+                <button class="set-img-btn img-btn-design disabled-btn" disabled>Set Image</button>
+
+            </div>
+
             <input type="file" name="image-file" class="hide file-input-field" accept="image/jpeg, image/png">
 
         </div>

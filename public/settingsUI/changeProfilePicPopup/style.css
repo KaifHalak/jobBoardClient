@@ -9,15 +9,16 @@
 }
 
 .change-profile-pic-container{
-    width: 40%;
-    height: 45%;
+    width: fit-content;
+    height: fit-content;
+
     position: relative;
     top: 50%;
     left: 50%;
 
     transform: translate(-50%, -50%);
     background-color: rgb(43,43,43);
-    padding: 40px;
+    padding: 20px 70px;
 
     display: flex;
     flex-direction: column;
@@ -28,9 +29,10 @@
     border-radius: 5px;
 }
 
-.browse-file-btn{
+.img-btn-design{
     width: 12rem;
     height: 5rem;
+    margin: 20px 0px;
 
     cursor: pointer;
 
@@ -44,7 +46,80 @@
     color: black;
 }
 
-.browse-file-btn:hover{
+.img-btn-design:not(:disabled):hover{
     color: white;
     background-color: #0070ff99;
+}
+
+
+/* Image Placeholder */
+
+.image-container{
+    width: 250px;
+    height: 250px;
+    /* border: 2px dashed black; */
+    overflow: hidden;
+    margin: 10px 0px;
+    border-radius: 50%;
+    z-index: 1000;
+
+    background-color: white;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.show-profile-pic-image{
+    width: 100%;
+    position:absolute;
+    left: 0;
+    top: 0;
+    cursor:grab;
+}
+
+.change-image-size-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0px 20px;
+}
+
+
+.change-image-size-btn-design{
+    width: 30px;
+    height: 40px;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.change-image-size-input-field{
+    font-size: 1.4rem;
+    width: 30px;
+    height: 35px;
+    border: 0px;
+
+    background-color: transparent;
+    color: white;
+    text-align: center;
+    margin: 10px 0px;
+    
+}
+
+
+.disabled-btn{
+    background-color: rgb(240,240,240,0.1);
+    cursor: not-allowed;
+}
+
+
+/* Remove arrows for number input field  */
+.change-image-size-input-field::-webkit-outer-spin-button,
+.change-image-size-input-field::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
